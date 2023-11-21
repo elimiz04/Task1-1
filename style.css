@@ -1,0 +1,95 @@
+.page{
+    color:#d4d4d4;
+}
+
+/*Shop by font adjustment*/
+.navbar-brand{
+    color: #11267a;
+    font-size: 45px;
+    font-family: 'Times New Roman', Times, serif;   
+}
+
+
+.header{
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/*Adjustement of navbar sizing and spacing*/
+.nav-item{
+    padding-left: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    
+}
+
+/* Style for the shopping cart button */
+.cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #11267a;
+    color: #fff;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* Style for the cart image */
+.cart-button img {
+    width: 40px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px;
+}
+
+#cart-count {
+    margin-right: 5px;
+}
+
+/*Image is able to be changed according to device size*/
+.carousel-item{
+    width: 100%;
+
+}
+
+.row{
+    padding-top: 40px;
+}
+
+#carouselExampleLight{
+    height: 87.4% !important;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100% !important;
+}
+
+#carouselExampleDark img{
+    width:100%; height:600px; 
+} 
+
+.text-center {
+    text-align: center!important;
+    margin: auto;
+}
+
+.container-fluid{
+    font-family: 'Times New Roman', Times, serif;
+}

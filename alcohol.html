@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hygiene</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" class="page">
+    
+</head>
+<body>
+    
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        
+        
+        <div class="container-fluid">
+            <header class="navbar-brand"  href="#">Shop By</header>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="alcohol.html">Alcohol</a></li>
+                            <li><a class="dropdown-item" href="beverages.html">Beverages</a></li>
+                            <li><a class="dropdown-item" href="baking.html">Baking</a></li>
+                            <li><a class="dropdown-item" href="cannedfood.html">Canned Food</a></li>
+                            <li><a class="dropdown-item" href="fruitandvegies.html">Fruit and Veggies</a></li>
+                            <li><a class="dropdown-item" href="fish.html">Fish</a></li>
+                            <li><a class="dropdown-item" href="meat.html">Meat</a></li>
+                            <li><a class="dropdown-item" href="pasta.html">Pasta</a></li>
+                            <li><a class="dropdown-item" href="hygiene.html">Hygiene</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+
+                <a href="cart.php">
+                    <button type="button" class="btn">
+                        <img src="images/cart.png" alt="Cart" width="20" height="auto" href="cart.php">
+                    </button>
+                </a>
+                <a href="cart.php">
+                    <button type="button" class="btn">
+                        <img src="images/profile.png" alt="profile" width="20" height="auto" href="cart.php">
+                    </button>
+                </a>
+
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <h1 class="header">
+        Alcohol
+    </h1>
+    
+    <!--Cards for items-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h3 class="card-title mb-4">Cisk</h3>     
+                        
+                        <h4 class="card-body">€2.00</h4>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+
+                            <a href="#" class="btn btn-primary mb-4 w-100">Add to cart</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h5 class="card-title mb-4">Cisk</h5>
+                        <a href="#" class="btn btn-primary mb-4">Add to cart</a>
+                        
+                        <!-- Add to List Button -->
+                        <button type="button" class="btn btn-outline-secondary btn-block mb-4">Add to List</button>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h5 class="card-title mb-4">Cisk</h5>
+                        <a href="#" class="btn btn-primary mb-4">Add to cart</a>
+                        
+                        <!-- Add to List Button -->
+                        <button type="button" class="btn btn-outline-secondary btn-block mb-4">Add to List</button>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!--2nd row -->
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h5 class="card-title mb-4">Cisk</h5>
+                        <a href="#" class="btn btn-primary mb-4">Add to cart</a>
+                        
+                        <!-- Add to List Button -->
+                        <button type="button" class="btn btn-outline-secondary btn-block mb-4">Add to List</button>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h5 class="card-title mb-4">Cisk</h5>
+                        <a href="#" class="btn btn-primary mb-4">Add to cart</a>
+                        
+                        <!-- Add to List Button -->
+                        <button type="button" class="btn btn-outline-secondary btn-block mb-4">Add to List</button>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 mb-4 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/cisk.png" class="card-img-top w-50 h-50 mx-auto"  alt="cisk">
+                    <div class="card-body card-body text-center">
+                        <h5 class="card-title mb-4">Cisk</h5>
+                        <a href="#" class="btn btn-primary mb-4">Add to cart</a>
+                        
+                        <!-- Add to List Button -->
+                        <button type="button" class="btn btn-outline-secondary btn-block mb-4">Add to List</button>
+                        
+                            <!-- Amount Tab with Plus and Minus Buttons -->
+                            <div class="input-group mb-">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary" type="button" id="minusBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="Enter amount" value="1" id="amountInput">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="plusBtn">+</button>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const minusBtn = document.getElementById('minusBtn');
+                    const plusBtn = document.getElementById('plusBtn');
+                    const amountInput = document.getElementById('amountInput');
+                    
+                    // Event listener for the minus button
+                    minusBtn.addEventListener('click', function () {
+                        const currentAmount = parseInt(amountInput.value, 10);
+                        if (currentAmount > 1) {
+                            amountInput.value = currentAmount - 1;
+                        }
+                    });
+                    
+                    // Event listener for the plus button
+                    plusBtn.addEventListener('click', function () {
+                        const currentAmount = parseInt(amountInput.value, 10);
+                        amountInput.value = currentAmount + 1;
+                    });
+                });
+            </script>
+            
+            
+            
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+</body>
+</html>
