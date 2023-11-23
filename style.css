@@ -129,14 +129,8 @@ html{
     max-width: calc(25% - 15px); /* Adjust based on your column width and margin */
 }
 
-/*Cart purchase page*/
-.header{
-    font-size: 25px;
-    font-family:'Times New Roman', Times, serif ;
-}
-
-.amount{
-    font-size: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+/*Sign up page*/
+.container3{
+    align-content: center;
 }
 
