@@ -6,7 +6,7 @@
 .navbar-brand{
     color: #11267a;
     font-size: 45px;
-    font-family: 'Times New Roman', Times, serif;   
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 
@@ -42,7 +42,7 @@
     
 }
 
-/* Style for the cart image */
+/* Style for the cart image in navbar */
 .cart-button img {
     width: 40px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
@@ -54,6 +54,7 @@
 }
 
 /*Image is able to be changed according to device size*/
+/* Carousel elements*/
 .carousel-item{
     width: 100%;
 
@@ -92,4 +93,50 @@ html{
 
 .container-fluid{
     font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(207, 206, 206);
 }
+
+/* Footer */
+/* To set background colour of footer */
+.footer-content {
+    background-color: #181b2f;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.bold{
+    font-weight: 520;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#productList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-lg-3 {
+    flex: 0 0 calc(25% - 15px); /* Adjust based on your column width and margin */
+    max-width: calc(25% - 15px); /* Adjust based on your column width and margin */
+}
+
+/*Cart purchase page*/
+.header{
+    font-size: 25px;
+    font-family:'Times New Roman', Times, serif ;
+}
+
+.amount{
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+

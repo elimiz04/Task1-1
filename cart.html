@@ -6,7 +6,7 @@
     <title>Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" class="page">
-
+    
 </head>
 <body>
     
@@ -42,7 +42,7 @@
                     </li>
                     
                 </ul>
-
+                
                 <a href="cart.html">
                     <button type="button" class="btn">
                         <img src="images/cart.png" alt="Cart" width="20" height="auto" href="cart.html">
@@ -60,10 +60,10 @@
                                 <li><a class="dropdown-item" href="#">Professional view</a></li>
                             </ul>
                         </div>
-
+                        
                     </button>
                 </a>
-
+                
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -71,10 +71,125 @@
             </div>
         </div>
     </nav>
+    
+    <!--Products in cart with remove buttons as well as quantity adjutment-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 mb-3 mb-lg-0">
+                <div class="card mb-4">
+                    <img src="images/pinta german.jpg" class="card-img-top w-50 h-50 mx-auto"  alt="Pinta German">
+                    <div class="card-body card-body text-center">
+                        <h3 class="card-title mb-4">Pinta German Style Blonde Ale Beer 4.9%</h3>     
+                        
+                        <h4 class="card-body">€5.00</h4>
+                        
+                        <!-- Amount Tab with Plus and Minus Buttons -->
+                        <div class="input-group mb-4">
+                            <button class="btn btn-outline-primary minusBtn" type="button">-</button>
+                            <input type="text" class="form-control text-center amountInput" placeholder="Enter amount" value="1">
+                            <button class="btn btn-outline-primary plusBtn" type="button">+</button>
+                        </div>
+                        
+                        <button class="remove-btn" onclick="removeCartItem(this)">Remove</button>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 mb-3 mb-lg-0">                
+                <div class="card mb-4">
+                    <img src="images/pinta english.jpg" class="card-img-top w-50 h-50 mx-auto"  alt="pinta English">
+                    <div class="card-body card-body text-center">
+                        <h3 class="card-title mb-4">Pinta English IPA Pale Ale Beer 5.9% vol</h3>     
+                        
+                        <h4 class="card-body">€5.00</h4>
+                        
+                        <!-- Amount Tab with Plus and Minus Buttons -->
+                        <div class="input-group mb-4">
+                            <button class="btn btn-outline-primary minusBtn" type="button">-</button>
+                            <input type="text" class="form-control text-center amountInput" placeholder="Enter amount" value="1">
+                            <button class="btn btn-outline-primary plusBtn" type="button">+</button>
+                        </div>
+                        
+                        <button class="remove-btn" onclick="removeCartItem(this)">Remove</button>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 mb-3 mb-lg-0 Checkout">
+                <span class="header">Total Amount :</span>
+                <div class="amount">
+                    €10.00
+                </div>
+                <button class="btn btn-primary">Checkout</button>
+            </div>
+        </div>
+    </div>
 
 
 
+    <!--Script control for item quanities-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            //All elements that have a class with minusBtn, plusBtn, amountInput
+            const minusBtns = document.querySelectorAll('.minusBtn');
+            const plusBtns = document.querySelectorAll('.plusBtn');
+            const amountInputs = document.querySelectorAll('.amountInput');
+            
+            // Event listener for all minus buttons
+            minusBtns.forEach( function (minusBtn) {
+                minusBtn.addEventListener('click', function(){
+                    const currentAmount = parseInt(minusBtn.nextElementSibling.value,10);
+                    if(currentAmount >1){
+                        minusBtn.nextElementSibling.value = currentAmount-1;
+                    }
+                })
+            });
+            
+            // Event listener for all plus buttons
+            plusBtns.forEach( function (plusBtn) {
+                plusBtn.addEventListener ('click',function(){
+                    const currentAmount = parseInt(plusBtn.previousElementSibling.value,10);
+                    plusBtn.previousElementSibling.value = currentAmount+1;
+                });
+            });
+        });
+        
+    </script>
+    
+    <!--script for remove elements in cart-->
+    <script>
+        function removeCartItem(button) {
+            var card = button.closest('.col-lg-3');
+            card.style.display = 'none';
+        }
+    </script>
+    
+    <!--Footer-->
+    <div class="footer-content">
+        <footer>
+            <div class="footer-text">
+                <span class="bold">DELIVERIES</span>
+            </div>
+            <div class="footer-text">
+                We deliver across Malta.
+                <br>
+                <span class="bold">Monday-Saturday: 09:00-19:00</span>
+            </div>
+            <div class="footer-text">
+                Tel: 
+                <span class="bold">
+                    +356 7956 5870
+                </span>
+                <br>
+                Email: 
+                <span class="bold"> Shopby@gmail.com</span>
+            </div>
+        </footer>
+    </div>
+    
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
+    
 </body>
 </html>
