@@ -30,7 +30,6 @@
 .cart-button {
     position: fixed;
     bottom: 20px;
-    right: 20px;
     background-color: #11267a;
     color: #fff;
     padding: 2px;
@@ -47,6 +46,11 @@
     width: 40px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 5px;
+}
+
+.dropdown-menu a {
+    left: 2; 
+    right: -5; 
 }
 
 #cart-count {

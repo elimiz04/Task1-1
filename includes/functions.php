@@ -20,3 +20,6 @@ function validUsername($username){
     
     return $results; 
 }
+
+
+

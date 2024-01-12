@@ -1,156 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alcohol</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" class="page">
-    
-</head>
-<body>
-    
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        
-        
-        <div class="container-fluid">
-            <header class="navbar-brand"  href="#">Shop By</header>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="homepage.html">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Products
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="alcohol.html">Alcohol</a></li>
-                            <li><a class="dropdown-item" href="beverages.html">Beverages</a></li>
-                            <li><a class="dropdown-item" href="baking.html">Baking</a></li>
-                            <li><a class="dropdown-item" href="cannedfood.html">Canned Food</a></li>
-                            <li><a class="dropdown-item" href="fruitandvegies.html">Fruit and Veggies</a></li>
-                            <li><a class="dropdown-item" href="fish.html">Fish</a></li>
-                            <li><a class="dropdown-item" href="meat.html">Meat</a></li>
-                            <li><a class="dropdown-item" href="pasta.html">Pasta</a></li>
-                            <li><a class="dropdown-item" href="hygiene.html">Hygiene</a></li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-                
-                <a href="cart.html">
-                    <button type="button" class="btn">
-                        <img src="images/cart.png" alt="Cart" width="20" height="auto" href="cart.html">
-                    </button>
-                </a>
-                <a href="user.html">
-                    <button type="button" class="btn">
-                        <div class="nav-item dropdown">
-                            <a class="btn" href="user.html" role="button" data-bs-toggle="dropdown" >
-                                <img src="images/profile.png" alt="profile" width="20" height="auto" href="user.html">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="signup.html">Create account</a></li>
-                                <li><a class="dropdown-item" href="#">Sign into account</a></li>
-                                <li><a class="dropdown-item" href="#">Professional view</a></li>
-                                <li><a class="dropdown-item" href="editaccount.html">Edit Account Details</a></li>
+<?php 
 
-                            </ul>
-                        </div>
-                        
-                    </button>
-                </a>
-                
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
-                    <!-- Link to the results page -->
-                    <a class="btn btn-outline-success" href="alcohol.html" onclick="return handleSearch()">Search</a>
-                </form>
-            </div>
-        </div>
-    </nav>
-    
-    <!--Header of page-->
-    <h1 class="header">
-        Sign Up
-    </h1>
-    
-    <div class="container-fluid">
-        <div class="rowContactMe text-center">
-            <div class="container3">
-                <div>
-                    <label for="firstName">First Name</label>
-                    <br>
-                    <input type="text" name="firstName" id="firstName" placeholder="Joe" required>
-                </div>
-            </div>
-            <br>
-            <div class="container3">
-                <div>
-                    <label for="lastName">Last Name</label>
-                    <br>
-                    <input type="text" name="lastName" id="lastName" placeholder="Borg" required>
-                </div>
-            </div>
-            <br>
-            <div class="container3">
-                <div>
-                    <label for="email">Email Address</label>
-                    <br>
-                    <input type="email" name="email" id="email" placeholder="mail@gmail.com" required>
-                </div>
-            </div>
-            <div class="container3">
-                <div>
-                    <label for="password">Password</label>
-                    <br>
-                    <input type="password" name="password" id="password" placeholder="Password" required>
-                </div>
-            </div>
-            <br>
-            <div id="button">
-                    <!--btn btn-primary would make it blue success makes it green there are different variations on bootstrep to change colour-->
-                    <button class="btn btn-primary" type="submit" >Continue</button>
-            </div>
-            <br>
-        </div>
+require_once "includes/functions.php";
+require_once "includes/dbh.php";
+
+require_once "includes/db-functions.php";
+
+include "includes/header.php";
+
+$towns = loadTowns ($conn);
+
+?>
+
+
+<header class="container-fluid bg-light border-bottom border-secondary p-4">
+<div class="row">
+<div class="col-12">
+<h1>Sign Up</h1>
+</div>
+</div>
+</header>
+
+<div class="container mt-3">
+<form action="includes/registration-inc.php" method="POST">
+<!-- Main Form -->
+<div class="row">
+<div class="col-lg-7 col-md-12">
+<!-- Personal Details -->
+<div class="border p-3 mb-3">
+<h3>Personal Details</h3>
+<div class="form-floating mb-3">
+<input type="input" class="form-control" id="firstName" name="firstName" required>
+<label for="firstName">First Name</label>
+</div>
+<div class="form-floating mb-3">
+<input type="input" class="form-control" id="lastName" name="lastName" required>
+<label for="lastName">Last Name</label>
+</div>
+<div class="form-floating mb-3">
+<input type="email" class="form-control" id="email" name="email" required>
+<label for="email">Email</label>
+</div>                  
+<div class="form-floating mb-3">
+<input type="password" class="form-control" id="password" name="password" required>
+<label for="password">Password</label>
+</div>
+</div>
+</div>
+<div class="col-lg-5 col-md-12">
+<!-- Residence -->
+<div class="border p-3 mb-3">
+<h3>Residence</h3>
+<div class="form-floating mb-3">
+<input type="input" class="form-control" id="address" name="address" required>
+<label for="address">Address</label>
+</div>
+<div class="form-floating mb-3">
+<input type="input" class="form-control" id="street" name="street" required>
+<label for="street">Street</label>
+</div>
+<div class="mb-3">
+        <label for="town" class="form-label">Select a Town:</label>
+        <select class="form-select" id="town" name="town" required>
+            <option disabled selected>Select a Town</option>
+            <?php foreach ($towns as $row): ?>
+                <option value="<?php echo $row["id"]; ?>">
+                    <?php echo $row["name"]; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
     </div>
-        
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        
-        
-        
-    </body>
-
-<!--Footer-->
-        
-<div class="footer-content">
-    <footer>
-        <div class="footer-text">
-            <span class="bold">DELIVERIES</span>
-        </div>
-        <div class="footer-text">
-            We deliver across Malta.
-            <br>
-            <span class="bold">Monday-Saturday: 09:00-19:00</span>
-        </div>
-        <div class="footer-text">
-            Tel: 
-            <span class="bold">
-                +356 7956 5870
-            </span>
-            <br>
-            Email: 
-            <span class="bold"> Shopby@gmail.com</span>
-        </div>
-    </footer>
+</div>
 </div>
 
-    </html>
+<!-- Form Buttons -->
+<div class="row">
+<div class="col-12 mb-3">
+<button type="submit" class="btn btn-success w-100 p-2 fs-5">Submit Application</button>
+</div>
+<div class="col-12">
+<button type="reset" class="btn btn-danger w-100 p-2 fs-5">Reset Form</button>
+</div>
+</div>
+</form>
+</div>
+
+<div class="container mt-5">
+<div class="row">
+<div class="col-3"></div>
+
+<?php
+    if(isset($_GET["error"])):
+?>
+
+<div class="col-6 text-center border border-danger-subtle bg-danger-subtle text-danger p-2">
+    <?php
+        $error = $_GET["error"];
+        if($error == "stmtfailed"){
+            echo"Something went wrong, please contact admin.";
+        }
+        elseif($error == "invalidUsername"){
+            echo "Invalid Username";
+        }
+    ?>
+</div>
+
+<?php endif; ?>
+
+<?php
+    if(isset($_GET["success"])){
+        if($_GET["success"]==true){
+            ?>
+                <div class="col-6 text-center border border-success-subtle bg-success-subtle text-success p-2">
+                    Application Registration completed successfully.
+                </div>
+            <?php
+        }
+    }
+?>
+
+
+
+<div class="col-3"></div>
+</div>
+</div>
+
+<?php
+include "includes/footer.php";
+?>
+
