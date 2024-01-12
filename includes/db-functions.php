@@ -6,6 +6,72 @@ if(session_status() == PHP_SESSION_NONE){
 }
 
 
+function loadProducts($conn){
+    $sql= "SELECT * FROM products;";
+    
+    
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$sql)){
+        echo "Could not load products";
+        exit();
+    }
+    
+    mysqli_stmt_execute($stmt);
+    $result =mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    return $result;
+
+}
+
+// Edit Product
+function updateProduct($conn, $productId, $newProduct, $newProductPrice, $newProductQty) {
+    // Update product according to its id
+    $sql = "UPDATE products SET productName = ?, price = ?, qty = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sssi", $newProduct, $newProductPrice, $newProductQty, $productId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error updating product: " . mysqli_error($conn);
+        exit();
+    }
+}
+
+
+function deleteProduct($conn, $productId) {
+    // Delete product according to its id
+    $sql = "DELETE FROM products WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $productId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error deleting product: " . mysqli_error($conn);
+        exit();
+    }
+}
+
+function createProduct($conn, $newProductName,$newProductPrice,$newProductQty) {
+    // Create a new product
+    $sql = "INSERT INTO products (productName, price, qty) VALUES (?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sii", $newProductName,$newProductPrice,$newProductQty);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error creating product Name: " . mysqli_error($conn);
+        exit();
+    }
+}
 function loadRoles($conn){
     $sql= "SELECT * FROM roles;";
     

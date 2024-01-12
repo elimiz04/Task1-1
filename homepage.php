@@ -54,6 +54,12 @@
             <a class="btn btn-primary" href="rolesPage.php" >Role Management</a>
         </div>
     <?php endif; ?>
+    <!-- (if user is Admin) -->
+    <?php if ($isUserAdmin): ?>
+        <div class="carousel-button-container roleButton" >
+            <a class="btn btn-primary" href="productPage.php" >Product Management</a>
+        </div>
+    <?php endif; ?>
 
     <!--Footer-->
     <?php include 'includes/footer.php'; ?>
