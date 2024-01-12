@@ -14,7 +14,7 @@ require_once "includes/db-functions.php";
 
             if ($product) {
                 echo "<div class='col-lg-6'>";
-                echo "<img src='{$product['imageLink']}' class='img-fluid' alt='Product Image' style='max-width: 400px;'>";
+                echo "<img src='{$product['imageLink']}' class='img-fluid' alt='Product Image'>";
                 echo "</div>";
 
                 echo "<div class='col-lg-6 text-center'>";

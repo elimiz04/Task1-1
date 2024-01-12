@@ -10,27 +10,26 @@ $products = loadAllProducts($conn);
 ?>
 
 <div class="container-fluid">
-<div class="row">
-<?php foreach ($products as $row): ?>
-    <div class="col-lg-3 col-md-4 mb-3">
-        <form class="product-form" data-product-id="<?php echo $row['id']; ?>">
-            <div class="card mb-4">
-                <img src="<?php echo $row["imageLink"]; ?>" class="card-img-top w-50 h-50 mx-auto" alt="Product Image">
-                <div class="card-body">
-                    <span style="display: block; text-align: center;">Price: €<?php echo $row["price"]; ?></span>
-                    <strong><?php echo $row["productName"]; ?></strong>
-                    <div class="info-row">
-                    <a href="product_detail.php">More Information</a>                    </div>
-                </div>
+    <div class="row">
+        <?php foreach ($products as $row): ?>
+            <div class="col-lg-3 col-md-4 mb-3">
+                <form class="product-form" action="product_detail.php" method="get">
+                    <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                    <div class="card mb-4">
+                        <img src="<?php echo $row["imageLink"]; ?>" class="card-img-top w-50 h-50 mx-auto" alt="Product Image">
+                        <div class="card-body">
+                            <span style="display: block; text-align: center;">Price: €<?php echo $row["price"]; ?></span>
+                            <strong><?php echo $row["productName"]; ?></strong>
+                            <div class="info-row">
+                                <button type="submit" class="btn btn-link">More Information</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
+</div>
 
-    </div>
-    </div>
-    
-    
-    <!--Footer-->
-    <?php include 'includes/footer.php'; ?>
-    
+<!--Footer-->
+<?php include 'includes/footer.php'; ?>
