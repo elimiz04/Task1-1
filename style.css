@@ -43,7 +43,7 @@
 
 /* Style for the cart image in navbar */
 .cart-button img {
-    width: 40px; /* Adjust the width as needed */
+    width: 40px; 
     height: auto; /* Maintain aspect ratio */
     margin-right: 5px;
 }
@@ -129,8 +129,8 @@ html{
 }
 
 .col-lg-3 {
-    flex: 0 0 calc(25% - 15px); /* Adjust based on your column width and margin */
-    max-width: calc(25% - 15px); /* Adjust based on your column width and margin */
+    flex: 0 0 calc(25% - 15px); 
+    max-width: calc(25% - 15px); 
 }
 
 /*Sign up page*/
@@ -138,3 +138,7 @@ html{
     align-content: center;
 }
 
+.stylingForCart{
+    width: 500px;
+    height: 500px;
+}

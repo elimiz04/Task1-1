@@ -8,7 +8,7 @@ include "includes/header.php";
 $products = loadAllProducts($conn);
 
 ?>
-
+<!-- View list of alcohol products -->
 <div class="container-fluid">
     <div class="row">
         <?php foreach ($products as $row): ?>

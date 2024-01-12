@@ -1,4 +1,3 @@
-<!--generic functions for application-->
 <?php
 
 function passwordsMatch($password, $confPassword ){
@@ -20,6 +19,19 @@ function validUsername($username){
     
     return $results; 
 }
+
+function validatesignInApplication($email, $password, $conn) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":password", $password);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $user;
+}
+
+
 
 
 

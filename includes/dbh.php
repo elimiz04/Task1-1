@@ -1,6 +1,5 @@
 <?php
 
-// Database Handler
 
 
 $serverName = "localhost";
@@ -15,5 +14,4 @@ if(!$conn){
 }
 
 
-//no closing tag because it is assumed it will close by itself as there is only php code 
-//conect data from one page to another
+

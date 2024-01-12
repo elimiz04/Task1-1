@@ -94,6 +94,8 @@ include "includes/header.php";
         }
         ?>
 
+<p>Don't have an account? <a href="signup.php">Sign up here</a>.</p>
+
         <div class="col-12 col-md-3"></div>
     </div>
 </div>

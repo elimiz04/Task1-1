@@ -2,7 +2,6 @@
 
 require_once "includes/functions.php";
 require_once "includes/dbh.php";
-
 require_once "includes/db-functions.php";
 
 include "includes/header.php";
@@ -118,7 +117,7 @@ $towns = loadTowns ($conn);
     }
 ?>
 
-
+<p>Already have an account? <a href="login.php">Login here</a>.</p>
 
 <div class="col-3"></div>
 </div>

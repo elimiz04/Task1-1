@@ -37,13 +37,11 @@ header('Pragma: no-cache');
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="alcohol.php">Alcohol</a></li>
-                            <li><a class="dropdown-item" href="baking.php">Baking</a></li>
                         </ul>
                     </li>
                 </ul>
 
                 <!-- Cart button -->
-                <!-- Modify the href attribute to point to your actual cart page -->
                 <a href="cart.php">
                     <button type="button" class="btn">
                         <img src="./assets/images/cart.png" alt="Cart" width="20" height="auto">
@@ -53,23 +51,18 @@ header('Pragma: no-cache');
                 <!-- User profile dropdown button -->
                 <div class="nav-item dropdown">
                     <?php
-                    // Replace this condition with your user authentication logic
                     $userIsLoggedIn = false;
                     if ($userIsLoggedIn) {
-                        // Fetch user details from your user session or database
-                        // Modify $userImageLink to point to the actual path of the user's image
                         $userImageLink = "path/to/user/image.jpg";
                         ?>
                         <a href="cart.php"class="btn"  >
-                            <!-- Modify the alt attribute and dimensions accordingly -->
                             <img src="./assets/images/cart.png" alt="Cart" width="20" height="auto">
                         </a>
                         <?php
                     } else {
-                        // If the user is not logged in, you can provide a default image or handle it differently
+                        // If the user is not logged in
                         ?>
                         <a href= "profile.php" xclass="btn" href="#" role="button" data-bs-toggle="dropdown">
-                            <!-- Modify the src attribute to point to your default user image -->
                             <img src="./assets/images/profile.png" alt="Header Image" width="20" height="auto">
                         </a>
                         <?php
@@ -78,7 +71,7 @@ header('Pragma: no-cache');
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
                         <li><a class="dropdown-item" href="login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="#">Professional view</a></li>
+                        <li><a class="dropdown-item" href="adminlogin.php">Professional view</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,57 +1,5 @@
 <!--harder functions for application-->
 <?php
-function loadCoursesByLevel($conn, $level){
-    $sql= "SELECT * FROM Course WHERE Level = {$level};";
-    
-    
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        echo "Could not load Courses";
-        exit();
-    }
-    
-    mysqli_stmt_execute($stmt);
-    
-    $result =mysqli_stmt_get_result($stmt);
-    
-    mysqli_stmt_close($stmt);
-    
-    return $result;
-}
-
-function loadCourseById($conn, $id){
-    $sql= "SELECT * FROM Course WHERE id = {$id};";
-    
-    
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        echo "Could not load Courses";
-        exit();
-    }
-    
-    mysqli_stmt_execute($stmt);
-    $result =mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    return $result -> fetch_assoc();
-
-}
-
-function loadCourseByMode($conn, $mode){
-    $sql= "SELECT * FROM coursemode WHERE id = {$mode};";
-    
-    
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        echo "Could not load Courses";
-        exit();
-    }
-    
-    mysqli_stmt_execute($stmt);
-    $result =mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
-    return $result -> fetch_assoc();
-
-}
 
 function loadTowns($conn){
     $sql= "SELECT * FROM Town;";
@@ -69,31 +17,31 @@ function loadTowns($conn){
     return $result;
 
 }
-function createApplication ($conn,  $password, $email, $firstName, $lastName, $address, $street, $town){
-    //echo "<h1> We have reached our destination. Counter: {($username), ($password), ($email), ($firstName), ($lastName), ($address), ($street), ($town)}.</h1>";
-    $sql = "INSERT INTO application( password, email, firstName, lastName, address, street, town) VALUES(?,?,?,?,?,?,?);";
+
+//This is the post request for the sign up
+function createApplication($conn, $email, $password, $firstName, $lastName, $address, $street, $town) {
+    $sql = "INSERT INTO application (email, password, firstName, lastName, address, street, town) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("location: ../homepage.php?error=stmtfailed");
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signinapplication.php?error=stmtfailed");
         exit();
     }
-    
-    //Automated application date - user does not insert this
-    $applicationDate= date ("Y-m-d");
 
-    //Hashed Password for security
+    // Hashed Password for security
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt,"sssssss",  $hashedPassword, $email, $firstName, $lastName, $address, $street, $town);
-
+    mysqli_stmt_bind_param($stmt, "sssssss", $email, $hashedPassword, $firstName, $lastName, $address, $street, $town);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
     header("location: ../homepage.php?success=true");
-    
+    exit();
 }
 
+
+
+//This is the get request to load all products for alchohol page
 function loadAllProducts($conn) {
     $sql = "SELECT * FROM products";
 
@@ -113,7 +61,7 @@ function loadAllProducts($conn) {
     return $result;
 }
 
-
+//This is the get request to load all products for baking page
 function loadAllBaking($conn) {
     $sql = "SELECT * FROM baking";
 
@@ -132,6 +80,29 @@ function loadAllBaking($conn) {
     return $result;
 }
 
+//This is the add to cart function
+function addToCart($conn,$product_name,$product_quantity,$product_price,$imageLink) {
+
+    $sql = "INSERT INTO cart(name, qty, price, imageLink) VALUES (?, ?, ?, ?)";
+    
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // header("location: ../alchol.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "siis", $product_name, $product_quantity, $product_price, $imageLink);
+    
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    
+    header("location: ../cart.php?success=true");
+    exit();
+    
+    
+    }
+
+    //This loads the contents within the cart
 function loadCart($conn) {
     $sql = "SELECT * FROM cart";
 
@@ -154,60 +125,45 @@ function getCartContents() {
     return isset($_SESSION['cart']) && is_array($_SESSION['cart']) ? $_SESSION['cart'] : array();
 }
 
-function connectToDatabase() {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "killersvault";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+//Edit of the quantity within the cart
+function editCartItemQuantity($conn, $cart_id, $new_quantity) {
+    $sql = "UPDATE cart SET qty = ? WHERE id = ?";
+    
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Handle the SQL error as needed
+        die("SQL error: " . mysqli_stmt_error($stmt));
     }
 
-    return $conn;
+    mysqli_stmt_bind_param($stmt, "ii", $new_quantity, $cart_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../cart.php?success=true");
+    exit();
+
 }
 
-function addToCart($productId, $productName, $productPrice, $quantity, $imageLink) {
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = array();
+//Delete product from cart
+function deleteCartItem($conn, $cart_id) {
+    $sql = "DELETE FROM cart WHERE id = ?";
+    
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Handle the SQL error as needed
+        die("SQL error: " . mysqli_stmt_error($stmt));
     }
 
-    foreach ($_SESSION['cart'] as $index => $item) {
-        if ($item['id'] == $productId) {
-            $_SESSION['cart'][$index]['quantity'] += $quantity;
-            $_SESSION['cart'][$index]['total'] = $item['price'] * $_SESSION['cart'][$index]['quantity'];
-            return;
-        }
-    }
+    mysqli_stmt_bind_param($stmt, "i", $cart_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 
-    // Make sure $productDetails has the expected structure
-    $productDetails = array(
-        'id' => $Id,
-        'name' => $Name,
-        'price' => $Price,
-        'quantity' => $quantity, // Ensure this is defined in $_POST['quantity']
-        'total' => $Price * $quantity,
-        'imageLink' => $imageLink,
-    );
-
-    $_SESSION['cart'][] = $product;
+    header("location: ../cart.php?success=true");
+    exit();
 }
 
-function removeFromCart($productId) {
-    if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $index => $item) {
-            if (is_array($item) && isset($item['id']) && $item['id'] == $productId) {
-                unset($_SESSION['cart'][$index]);
-                return;
-            }
-        }
-    }
-}
 
+//This shows the product according to its id
 function loadProduct($conn, $productId) {
     // Use $conn->prepare() instead of prepare() directly
     $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
@@ -232,29 +188,16 @@ function loadProduct($conn, $productId) {
     }
 }
 
-function getProduct($conn, $productId) {
-    $sql = "SELECT * FROM products WHERE id = ?";
-    
-    $stmt = mysqli_stmt_init($conn);
-    
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        // Handle the error appropriately
-        return null;
+//This is to connect to the database
+function connectToDatabase($servername, $dbUsername, $dbPassword, $dbName) {
+    $conn = new mysqli($servername, $dbUsername, $dbPassword, $dbName);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    
-    mysqli_stmt_bind_param($stmt, "i", $productId);
-    mysqli_stmt_execute($stmt);
-    
-    $result = mysqli_stmt_get_result($stmt);
-    
-    // Assuming you want to return an associative array
-    $productDetails = mysqli_fetch_assoc($result);
-    
-    mysqli_stmt_close($stmt);
 
-    return $productDetails;
+    return $conn;
 }
-
-
 
 ?>

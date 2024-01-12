@@ -1,39 +1,35 @@
-<?php 
+<?php
 require_once "includes/functions.php";
 require_once "includes/dbh.php";
 require_once "includes/db-functions.php";
 
 include "includes/header.php";
-?>
 
-<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle the form submission
-    $productName = $_POST['product_name'];
-    $quantity = $_POST['quantity'];
-    $price = $_POST['price'];
+    $productName = mysqli_real_escape_string($conn, $_POST['product_name']);
+    $quantity = (int)$_POST['quantity'];
+    $price = (float)$_POST['price'];
     $totalPrice = $quantity * $price;
-    $customerName = $_POST['customer_name'];
-    $customerEmail = $_POST['customer_email'];
+    $customerName = mysqli_real_escape_string($conn, $_POST['customer_name']);
+    $customerEmail = mysqli_real_escape_string($conn, $_POST['customer_email']);
 
-    // Perform database insertion using MySQLi
-    $conn = new mysqli("localhost", "your_username", "your_password", "your_database");
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
+    // Perform database insertion using prepared statements
     $sql = "INSERT INTO checkout_info (product_name, quantity, price, total_price, customer_name, customer_email)
-            VALUES ('$productName', $quantity, $price, $totalPrice, '$customerName', '$customerEmail')";
+            VALUES (?, ?, ?, ?, ?, ?)";
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt = mysqli_stmt_init($conn);
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, "siddss", $productName, $quantity, $price, $totalPrice, $customerName, $customerEmail);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
         echo "Record inserted successfully!";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-
-    $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -49,41 +45,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container mt-5">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <ul class="nav nav-tabs" id="myTabs">
-            <li class="nav-item">
-                <a class="nav-link active" id="product-tab" data-toggle="tab" href="#product">Product</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="customer-tab" data-toggle="tab" href="#customer">Customer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="confirmation-tab" data-toggle="tab" href="#confirmation">Confirmation</a>
-            </li>
+            <!-- ... (unchanged) ... -->
         </ul>
+<!-- Customer Tab -->
+<div class="tab-pane fade" id="customer">
+    <label for="customer_name">Customer Name:</label>
+    <input type="text" name="customer_name" required>
 
-        <div class="tab-content mt-2">
-            <!-- Product Tab -->
-            <div class="tab-pane fade show active" id="product">
-                <label for="product_name">Product Name:</label>
-                <input type="text" name="product_name" required>
-                <!-- Add other product input fields here -->
-            </div>
+    <label for="customer_email">Customer Email:</label>
+    <input type="email" name="customer_email" required>
 
-            <!-- Customer Tab -->
-            <div class="tab-pane fade" id="customer">
-                <label for="customer_name">Customer Name:</label>
-                <input type="text" name="customer_name" required>
-                <!-- Add other customer input fields here -->
-            </div>
+    <label for="payment_card_number">Card Number:</label>
+    <input type="text" name="payment_card_number" required>
 
-            <!-- Confirmation Tab -->
-            <div class="tab-pane fade" id="confirmation">
-                <!-- Add a confirmation message or summary here -->
-            </div>
-        </div>
+    <label for="payment_account_holder">Account Holder:</label>
+    <input type="text" name="payment_account_holder" required>
+
+    <label for="payment_cvv">CVV:</label>
+    <input type="text" name="payment_cvv" required>
+
+    <label for="payment_expiration_date">Expiration Date:</label>
+    <input type="text" name="payment_expiration_date" placeholder="MM/YYYY" required>
+
+    <!-- Add other payment input fields as needed -->
+</div>
+
 
         <input type="submit" value="Submit">
     </form>
 </div>
 
 <?php include 'includes/footer.php'; ?>
-
