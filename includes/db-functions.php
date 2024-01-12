@@ -5,6 +5,73 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 
+
+function loadRoles($conn){
+    $sql= "SELECT * FROM roles;";
+    
+    
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$sql)){
+        echo "Could not load Roles";
+        exit();
+    }
+    
+    mysqli_stmt_execute($stmt);
+    $result =mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    return $result;
+
+}
+
+// Edit Role
+function updateRole($conn, $roleId, $newRole) {
+    // Update role according to its id
+    $sql = "UPDATE roles SET role = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "si", $newRole, $roleId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error updating role: " . mysqli_error($conn);
+        exit();
+    }
+}
+
+function deleteRole($conn, $roleId) {
+    // Delete role according to its id
+    $sql = "DELETE FROM roles WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $roleId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error deleting role: " . mysqli_error($conn);
+        exit();
+    }
+}
+
+function createRole($conn, $roleName) {
+    // Create a new role
+    $sql = "INSERT INTO roles (role) VALUES (?)";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "s", $roleName);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error creating role: " . mysqli_error($conn);
+        exit();
+    }
+}
+
 function loadTowns($conn){
     $sql= "SELECT * FROM Town;";
     
