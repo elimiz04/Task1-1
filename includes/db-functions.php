@@ -1,6 +1,10 @@
 <!--harder functions for application-->
 <?php
 
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+
 function loadTowns($conn){
     $sql= "SELECT * FROM Town;";
     
@@ -18,9 +22,25 @@ function loadTowns($conn){
 
 }
 
+function updateUserInfo($conn, $newName, $newSurname, $newEmail,$userId) {
+    // Assuming you have a table named 'users'
+    $sql = "UPDATE application SET firstName = ?, lastName = ?, email = ? WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sssi", $newName, $newSurname, $newEmail,$userId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle SQL error
+        echo "Error updating user information: " . mysqli_error($conn);
+        exit();
+    }
+}
+
 //This is the post request for the sign up
-function createApplication($conn, $email, $password, $firstName, $lastName, $address, $street, $town) {
-    $sql = "INSERT INTO application (email, password, firstName, lastName, address, street, town) VALUES (?, ?, ?, ?, ?, ?, ?)";
+function createApplication($conn, $email, $password, $firstName, $lastName, $address, $street, $town, $role) {
+    $sql = "INSERT INTO application (email, password, firstName, lastName, address, street, town, Role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -29,9 +49,8 @@ function createApplication($conn, $email, $password, $firstName, $lastName, $add
     }
 
     // Hashed Password for security
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssssss", $email, $hashedPassword, $firstName, $lastName, $address, $street, $town);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $email, $password, $firstName, $lastName, $address, $street, $town, $role);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -39,7 +58,16 @@ function createApplication($conn, $email, $password, $firstName, $lastName, $add
     exit();
 }
 
+function password_verify2($password, $passwordFromApi){
 
+    if($password === $passwordFromApi ){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
 
 //This is the get request to load all products for alchohol page
 function loadAllProducts($conn) {

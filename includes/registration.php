@@ -1,4 +1,6 @@
-<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; 
+session_start();
+?>
 
 <link rel="stylesheet" type="text/css" href="style.css">
 

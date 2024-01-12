@@ -1,4 +1,7 @@
 <?php
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
 
 require_once "functions.php";
 require_once "dbh.php";
@@ -13,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address = $_POST["address"];
     $street = $_POST["street"];
     $town = $_POST["town"];
-
+    $role = $_POST["role"];
     // Call the function to create the application
-    createApplication($conn, $email, $password, $firstName, $lastName, $address, $street, $town);
+    createApplication($conn, $email, $password, $firstName, $lastName, $address, $street, $town, $role);
 } else {
     // If not submitted via POST, redirect to homepage
     header("location:  ../homepage.php");

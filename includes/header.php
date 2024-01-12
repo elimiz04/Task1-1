@@ -71,7 +71,7 @@ header('Pragma: no-cache');
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="signup.php">Sign Up</a></li>
                         <li><a class="dropdown-item" href="login.php">Login</a></li>
-                        <li><a class="dropdown-item" href="adminlogin.php">Professional view</a></li>
+                        <li><a class="dropdown-item" href="profile.php">Professional view</a></li>
                     </ul>
                 </div>
             </div>

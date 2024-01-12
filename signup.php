@@ -57,6 +57,9 @@ $towns = loadTowns ($conn);
 <input type="input" class="form-control" id="street" name="street" required>
 <label for="street">Street</label>
 </div>
+
+<input class="form-control" id="role" name="role" value="User" type='hidden'required>
+
 <div class="mb-3">
         <label for="town" class="form-label">Select a Town:</label>
         <select class="form-select" id="town" name="town" required>

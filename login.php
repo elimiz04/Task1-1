@@ -16,7 +16,7 @@ include "includes/header.php";
 </header>
 
 <div class="container mt-3 text-center">
-    <form action="includes/registration-inc.php" method="POST">
+    <form action="includes/login-reg.php" method="POST">
         <!-- Main Form -->
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-12">
